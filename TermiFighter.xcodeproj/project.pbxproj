@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		834BD3E62726F2F100DBF80A /* Bow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BD3E52726F2F100DBF80A /* Bow.swift */; };
+		834BD3E82726F4EE00DBF80A /* Gun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BD3E72726F4EE00DBF80A /* Gun.swift */; };
+		834BD3EA2726F50900DBF80A /* Shotgun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BD3E92726F50900DBF80A /* Shotgun.swift */; };
+		834BD3EC2726F51F00DBF80A /* Sword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BD3EB2726F51F00DBF80A /* Sword.swift */; };
+		834BD3F02726F5AB00DBF80A /* Eddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BD3EF2726F5AB00DBF80A /* Eddy.swift */; };
+		834BD3F22726F67600DBF80A /* Carol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BD3F12726F67600DBF80A /* Carol.swift */; };
+		834BD3F42726F69D00DBF80A /* Fred.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BD3F32726F69D00DBF80A /* Fred.swift */; };
+		834BD3F62726F7E000DBF80A /* Celine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BD3F52726F7E000DBF80A /* Celine.swift */; };
+		834BD3F82726F7FE00DBF80A /* Boris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BD3F72726F7FE00DBF80A /* Boris.swift */; };
+		834BD3FA2726F81200DBF80A /* Chris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BD3F92726F81200DBF80A /* Chris.swift */; };
+		834BD3FC2726F82800DBF80A /* Bob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BD3FB2726F82800DBF80A /* Bob.swift */; };
+		834BD3FE2726F83D00DBF80A /* Terry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BD3FD2726F83D00DBF80A /* Terry.swift */; };
+		834BD4002726F85100DBF80A /* Eva.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BD3FF2726F85100DBF80A /* Eva.swift */; };
 		8363347D27144DBD00C9BBCE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363347C27144DBD00C9BBCE /* main.swift */; };
 		8363348427144DD600C9BBCE /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363348327144DD600C9BBCE /* Character.swift */; };
 		8363348627144DDE00C9BBCE /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363348527144DDE00C9BBCE /* Game.swift */; };
@@ -27,6 +40,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		834BD3E52726F2F100DBF80A /* Bow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bow.swift; sourceTree = "<group>"; };
+		834BD3E72726F4EE00DBF80A /* Gun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gun.swift; sourceTree = "<group>"; };
+		834BD3E92726F50900DBF80A /* Shotgun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shotgun.swift; sourceTree = "<group>"; };
+		834BD3EB2726F51F00DBF80A /* Sword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sword.swift; sourceTree = "<group>"; };
+		834BD3EF2726F5AB00DBF80A /* Eddy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eddy.swift; sourceTree = "<group>"; };
+		834BD3F12726F67600DBF80A /* Carol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carol.swift; sourceTree = "<group>"; };
+		834BD3F32726F69D00DBF80A /* Fred.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fred.swift; sourceTree = "<group>"; };
+		834BD3F52726F7E000DBF80A /* Celine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Celine.swift; sourceTree = "<group>"; };
+		834BD3F72726F7FE00DBF80A /* Boris.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boris.swift; sourceTree = "<group>"; };
+		834BD3F92726F81200DBF80A /* Chris.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chris.swift; sourceTree = "<group>"; };
+		834BD3FB2726F82800DBF80A /* Bob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bob.swift; sourceTree = "<group>"; };
+		834BD3FD2726F83D00DBF80A /* Terry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terry.swift; sourceTree = "<group>"; };
+		834BD3FF2726F85100DBF80A /* Eva.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eva.swift; sourceTree = "<group>"; };
 		8363347927144DBD00C9BBCE /* TermiFighter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TermiFighter; sourceTree = BUILT_PRODUCTS_DIR; };
 		8363347C27144DBD00C9BBCE /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		8363348327144DD600C9BBCE /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
@@ -46,13 +72,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		834BD3ED2726F57900DBF80A /* The Weapons */ = {
+			isa = PBXGroup;
+			children = (
+				834BD3E52726F2F100DBF80A /* Bow.swift */,
+				834BD3E72726F4EE00DBF80A /* Gun.swift */,
+				834BD3E92726F50900DBF80A /* Shotgun.swift */,
+				834BD3EB2726F51F00DBF80A /* Sword.swift */,
+			);
+			path = "The Weapons";
+			sourceTree = "<group>";
+		};
+		834BD3EE2726F59000DBF80A /* The Characters */ = {
+			isa = PBXGroup;
+			children = (
+				834BD3EF2726F5AB00DBF80A /* Eddy.swift */,
+				834BD3F12726F67600DBF80A /* Carol.swift */,
+				834BD3F32726F69D00DBF80A /* Fred.swift */,
+				834BD3F52726F7E000DBF80A /* Celine.swift */,
+				834BD3F72726F7FE00DBF80A /* Boris.swift */,
+				834BD3F92726F81200DBF80A /* Chris.swift */,
+				834BD3FB2726F82800DBF80A /* Bob.swift */,
+				834BD3FD2726F83D00DBF80A /* Terry.swift */,
+				834BD3FF2726F85100DBF80A /* Eva.swift */,
+			);
+			path = "The Characters";
+			sourceTree = "<group>";
+		};
 		8363347027144DBD00C9BBCE = {
 			isa = PBXGroup;
 			children = (
+				834BD3EE2726F59000DBF80A /* The Characters */,
+				834BD3ED2726F57900DBF80A /* The Weapons */,
 				8363348327144DD600C9BBCE /* Character.swift */,
-				83781EE02720441700744877 /* Weapon.swift */,
 				8363348527144DDE00C9BBCE /* Game.swift */,
 				8363348727144DEA00C9BBCE /* Player.swift */,
+				83781EE02720441700744877 /* Weapon.swift */,
 				8363347B27144DBD00C9BBCE /* TermiFighter */,
 				8363347A27144DBD00C9BBCE /* Products */,
 			);
@@ -132,11 +187,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				834BD3EA2726F50900DBF80A /* Shotgun.swift in Sources */,
+				834BD3FE2726F83D00DBF80A /* Terry.swift in Sources */,
+				834BD3E82726F4EE00DBF80A /* Gun.swift in Sources */,
+				834BD3F42726F69D00DBF80A /* Fred.swift in Sources */,
+				834BD3E62726F2F100DBF80A /* Bow.swift in Sources */,
+				834BD3F02726F5AB00DBF80A /* Eddy.swift in Sources */,
 				8363348827144DEA00C9BBCE /* Player.swift in Sources */,
 				8363347D27144DBD00C9BBCE /* main.swift in Sources */,
+				834BD3FC2726F82800DBF80A /* Bob.swift in Sources */,
+				834BD3F82726F7FE00DBF80A /* Boris.swift in Sources */,
 				8363348627144DDE00C9BBCE /* Game.swift in Sources */,
+				834BD3F62726F7E000DBF80A /* Celine.swift in Sources */,
+				834BD4002726F85100DBF80A /* Eva.swift in Sources */,
 				8363348427144DD600C9BBCE /* Character.swift in Sources */,
 				83781EE12720441700744877 /* Weapon.swift in Sources */,
+				834BD3EC2726F51F00DBF80A /* Sword.swift in Sources */,
+				834BD3F22726F67600DBF80A /* Carol.swift in Sources */,
+				834BD3FA2726F81200DBF80A /* Chris.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

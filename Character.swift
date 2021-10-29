@@ -17,15 +17,15 @@ class Character {
     }
     
     convenience init() {
-        self.init(name: "", health: 0, weapon: .bow)
+        self.init(name: "", health: 0, weapon: Bow())
     }
 
     func attack(target: Character) {
-        target.health -= self.weapon.rawValue
+        target.health -= self.weapon.damages
     }
 
     func heal(target: Character) {
-        target.health += self.weapon.rawValue
+        target.health += self.weapon.damages
     }
 
 

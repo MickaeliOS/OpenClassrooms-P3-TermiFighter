@@ -4,15 +4,11 @@
 //
 //  Created by Mickaël Horn on 11/10/2021.
 //
-
 class Game {
     var nbTurns = 0
-    //var winner: Player
-    var charactersTable = charactersCreation()
-    var eliminatedCharacterP1 = [Character]()
-    var eliminatedCharacterP2 = [Character]()
-    var Player1 = Player()
-    var Player2 = Player()
+    var tabChars = charactersCreation()
+    var P1 = Player()
+    var P2 = Player()
 
     init() {
         startGame()
@@ -20,7 +16,6 @@ class Game {
 
     func startGame() {
         // ----------------------------------------------------------------PLAYER1----------------------------------------------------------------
-
         //Initialization of player 1
         print("Welcome to TermiFighter, the game is about to begin... Player 1, what is your name ? \n")
         var namePlayer1 = ""
@@ -32,13 +27,12 @@ class Game {
 
         // Player1 choose his characters
         let charactersP1 = self.createTeams()
-        Player1 = Player(name: namePlayer1, tableOfCharacter: charactersP1)
+        P1 = Player(name: namePlayer1, hisChars: charactersP1)
 
         // Display the players's 1 characters
-        self.displayCharacters(characters: charactersP1)
+        self.displayChars(chars: charactersP1)
 
         // ----------------------------------------------------------------PLAYER2----------------------------------------------------------------
-
         //Initialisation du joueur 2
         print("\nPlayer 2, what is your name ? \n")
         var namePlayer2 = ""
@@ -50,162 +44,109 @@ class Game {
 
         // Player2 choose his characters
         let charactersP2 = self.createTeams()
-        Player2 = Player(name: namePlayer2, tableOfCharacter: charactersP2)
+        P2 = Player(name: namePlayer2, hisChars: charactersP2)
 
         // Display the players's 2 characters
-        displayCharacters(characters: charactersP2)
+        displayChars(chars: charactersP2)
 
         // Display the rest of the characters
         print("\nRESTE DES PERSONNAGES\n")
-        displayCharacters(characters: charactersTable)
+        displayChars(chars: tabChars)
 
     }
 
     func createTeams() -> [Character] {
 
-        var charactersOfThePlayer = [Character]()
+        var charsOfThePlayer = [Character]()
+        var character: String?
 
         // Display of the characters
-        self.displayCharacters(characters: charactersTable)
+        self.displayChars(chars: tabChars)
 
         // Players chooses their team
-
         var count = 0
 
         repeat {
             print("\nCharacter \(count+1) : \n")
 
-            if let character = readLine(), !character.isEmpty, controlCharacter(nameOfTheCharacter: character, tableOfCharacters: charactersTable) {
+            repeat {
+                character = readLine()
+            } while character!.isEmpty || !controlChar(nameChar: character!, tabChars: tabChars)
+                
                 print("Pick his new name, otherwise you can write \"no\" \n")
 
-                if let rename = readLine() {
+            var rename: String?
+
+            repeat {
+                rename = readLine()
+            } while rename!.isEmpty
+
                     if rename != "no" {
-                        charactersOfThePlayer.append(self.pickCharacter(nameOfTheCharacter: character, charactersTable: self.charactersTable))
-                        removeFromTab(nameOfCharacter: character, tableOfCharacters: &charactersTable)
-                        charactersOfThePlayer[count].name = rename
+
+                        charsOfThePlayer.append(self.pickChar(nameChar: character!, tabChars: tabChars))
+                        removeFromTab(nameChar: character!, tabChars: &tabChars)
+                        charsOfThePlayer[count].name = rename!
+
                     } else {
-                        charactersOfThePlayer.append(self.pickCharacter(nameOfTheCharacter: character, charactersTable: self.charactersTable))
-                        removeFromTab(nameOfCharacter: character, tableOfCharacters: &charactersTable)
+
+                        charsOfThePlayer.append(self.pickChar(nameChar: character!, tabChars: tabChars))
+                        removeFromTab(nameChar: character!, tabChars: &tabChars)
+
                     }
-                }
-            }
 
             count += 1
 
         } while count < 3
 
-        return charactersOfThePlayer
+        return charsOfThePlayer
 
     }
 
-    func display() {
-        if Player1.tableOfCharacters.isEmpty {
-            print("***************************************************")
-            print("\nCONGRATULATIONS \(Player2.name)! YOU WON THE GAME IN \(nbTurns) TURNS!")
-            print("***************************************************\n")
+    func display(winner: Player, loser: Player) {
 
-            print("Your characters :\n")
-            displayCharacters(characters: Player2.tableOfCharacters)
+        print("***************************************************")
+        print("\nCONGRATULATIONS \(winner.name)! YOU WON THE GAME IN \(nbTurns) TURNS!")
+        print("***************************************************\n")
 
-            print("\nCharacters of \(Player1.name)\n")
-            displayCharacters(characters: eliminatedCharacterP1)
-        } else if Player2.tableOfCharacters.isEmpty {
-            print("***************************************************")
-            print("\nCONGRATULATIONS \(Player1.name)! YOU WON THE GAME IN \(nbTurns) TURNS!\n")
-            print("***************************************************\n")
+        print("Your characters :\n")
+        displayChars(chars: winner.hisChars)
 
-            print("Your characters :\n")
-            displayCharacters(characters: Player1.tableOfCharacters)
-
-
-            print("\nCharacters of \(Player2.name)\n")
-            displayCharacters(characters: eliminatedCharacterP2)
-        }
+        print("\nCharacters of \(loser.name)\n")
+        displayChars(chars: loser.hisEliminatedChars)
     }
 
     func startBattle() {
+        print("\n------------------GAME START------------------\n")
         repeat {
             nbTurns += 1
-            print("\n------------------GAME START------------------\n")
 
-            // -------------------------------------------------------------PLAYER1-------------------------------------------------------------
-            print("\(Player1.name), select a character\n")
-            displayCharacters(characters: Player1.tableOfCharacters)
-            var characterPicked = Character()
-            var characterPicked2 = Character()
-            var character: String?
+            turn(of: P1, nextPlayer: P2)
 
+                if P1.hisChars.isEmpty {
 
-            repeat {
-                character = readLine()
-            } while character!.isEmpty && controlCharacter(nameOfTheCharacter: character!, tableOfCharacters: Player1.tableOfCharacters)
+                    display(winner: P2, loser: P1)
+                    break
 
-            // Player1 choose his character
-            characterPicked = pickCharacter(nameOfTheCharacter: character!, charactersTable: Player1.tableOfCharacters)
+                } else if P2.hisChars.isEmpty {
 
-            print("Choose an ally to heal, or an ennemy to attack!\n")
-            repeat {
-                character = readLine()
-            } while character!.isEmpty && (controlCharacter(nameOfTheCharacter: character!, tableOfCharacters: Player1.tableOfCharacters) || controlCharacter(nameOfTheCharacter: character!, tableOfCharacters: Player2.tableOfCharacters))
+                    display(winner: P1, loser: P2)
+                    break
 
-            if controlCharacter(nameOfTheCharacter: character!, tableOfCharacters: Player1.tableOfCharacters) {
-
-                characterPicked2 = pickCharacter(nameOfTheCharacter: character!, charactersTable: Player1.tableOfCharacters)
-                characterPicked.heal(target: characterPicked2)
-
-            } else if controlCharacter(nameOfTheCharacter: character!, tableOfCharacters: Player2.tableOfCharacters) {
-
-                characterPicked2 = pickCharacter(nameOfTheCharacter: character!, charactersTable: Player2.tableOfCharacters)
-                print(characterPicked2.health)
-                characterPicked.attack(target: characterPicked2)
-                print(characterPicked2.health)
-
-                if characterPicked2.health <= 0 {
-                    eliminatedCharacterP2.append(characterPicked2)
-                    removeFromTab(nameOfCharacter: characterPicked2.name, tableOfCharacters: &Player2.tableOfCharacters)
-                    if Player2.tableOfCharacters.isEmpty {
-                        display()
-                        break
-                    }
                 }
-            }
+            
+            turn(of: P2, nextPlayer: P1)
 
-            // -------------------------------------------------------------PLAYER2-------------------------------------------------------------
-            print("\(Player2.name), select a character\n")
-            displayCharacters(characters: Player2.tableOfCharacters)
+                if P1.hisChars.isEmpty {
 
-            repeat {
-                character = readLine()
-            } while character!.isEmpty && controlCharacter(nameOfTheCharacter: character!, tableOfCharacters: Player1.tableOfCharacters)
+                    display(winner: P2, loser: P1)
+                    break
 
-            // Player1 choose his character
-            characterPicked = pickCharacter(nameOfTheCharacter: character!, charactersTable: Player1.tableOfCharacters)
+                } else if P2.hisChars.isEmpty {
 
-            print("\nChoose an ally to heal, or an ennemy to attack!\n")
+                    display(winner: P1, loser: P2)
+                    break
 
-            repeat {
-                character = readLine()
-            } while character!.isEmpty && (controlCharacter(nameOfTheCharacter: character!, tableOfCharacters: Player1.tableOfCharacters) || controlCharacter(nameOfTheCharacter: character!, tableOfCharacters: Player2.tableOfCharacters))
-
-            if controlCharacter(nameOfTheCharacter: character!, tableOfCharacters: Player2.tableOfCharacters) {
-
-                characterPicked2 = pickCharacter(nameOfTheCharacter: character!, charactersTable: Player2.tableOfCharacters)
-                characterPicked.heal(target: characterPicked2)
-
-            } else if controlCharacter(nameOfTheCharacter: character!, tableOfCharacters: Player1.tableOfCharacters) {
-
-                characterPicked2 = pickCharacter(nameOfTheCharacter: character!, charactersTable: Player1.tableOfCharacters)
-                characterPicked.attack(target: characterPicked2)
-
-                if characterPicked2.health <= 0 {
-                    eliminatedCharacterP1.append(characterPicked2)
-                    removeFromTab(nameOfCharacter: characterPicked2.name, tableOfCharacters: &Player1.tableOfCharacters)
-                    if Player1.tableOfCharacters.isEmpty {
-                        display()
-                        break
-                    }
                 }
-            }
 
         } while true
     }
@@ -213,52 +154,124 @@ class Game {
     static func charactersCreation() -> [Character] {
         var charactersTable = [Character]()
 
-        charactersTable.append(Character(name: "Eddy", health: 800, weapon: .gun))
-        charactersTable.append(Character(name: "Carol", health: 950, weapon: .gun))
-        charactersTable.append(Character(name: "Fred", health: 1290, weapon: .bow))
-        charactersTable.append(Character(name: "Celine", health: 300, weapon: .shotgun))
-        charactersTable.append(Character(name: "Boris", health: 659, weapon: .gun))
-        charactersTable.append(Character(name: "Chris", health: 2000, weapon: .sword))
-        charactersTable.append(Character(name: "Bob", health: 4, weapon: .shotgun))
-        charactersTable.append(Character(name: "Terry", health: 9, weapon: .bow))
-        charactersTable.append(Character(name: "Eva", health: 7, weapon: .gun))
+        charactersTable.append(Eddy())
+        charactersTable.append(Carol())
+        charactersTable.append(Fred())
+        charactersTable.append(Celine())
+        charactersTable.append(Boris())
+        charactersTable.append(Chris())
+        charactersTable.append(Bob())
+        charactersTable.append(Terry())
+        charactersTable.append(Eva())
 
         return charactersTable
     }
 
-    func displayCharacters(characters: [Character]) {
-        for character in characters {
-            print("Name : \(character.name) // Health : \(character.health) // Weapon : \(character.weapon)")
+    func displayChars(chars: [Character]) {
+        for character in chars {
+            print("Name : \(character.name) // Health : \(character.health) // Weapon : \(character.weapon.damages)")
             print("-----------------------------------------------")
         }
     }
 
-    func controlCharacter(nameOfTheCharacter: String, tableOfCharacters: [Character]) -> Bool {
-        for character in tableOfCharacters {
-            if character.name == nameOfTheCharacter {
-                return true
-            }
+    func controlChar(nameChar: String, tabChars: [Character]) -> Bool {
+        return tabChars.contains { theCharacter in
+            theCharacter.name == nameChar
         }
-        return false
     }
 
-    func pickCharacter(nameOfTheCharacter: String, charactersTable: [Character]) -> Character {
-        let theCharacter = Character()
-
-        for character in charactersTable {
-            if character.name == nameOfTheCharacter {
-                return character
-            }
-        }
-
-        return theCharacter
+    func pickChar(nameChar: String, tabChars: [Character]) -> Character {
+        return tabChars.first { theCharacter in
+            theCharacter.name == nameChar
+        }!
     }
 
-    func removeFromTab(nameOfCharacter: String, tableOfCharacters: inout [Character]) {
-        for i in 0..<tableOfCharacters.count {
-            if nameOfCharacter == tableOfCharacters[i].name {
-                tableOfCharacters.remove(at: i)
-                return
+    func removeFromTab(nameChar: String, tabChars: inout [Character]) {
+        tabChars.removeAll { theChar in
+            theChar.name == nameChar
+        }
+    }
+
+    // Permet de savoir si un personnage est dans un des deux tableaux passés en paramètre
+    func inTeam(nameChar: String, tab1: [Character], tab2: [Character]) -> Bool {
+        var result1 = false
+        var result2 = false
+
+        result1 = tab1.contains { theChar in
+            theChar.name == nameChar
+        }
+
+        result2 = tab2.contains { theChar in
+            theChar.name == nameChar
+        }
+
+        return result1 || result2
+    }
+
+    // Permet de savoir dans quel équipe se trouve le personnage
+    func whichTeam(nameChar: String, tab1: [Character], tab2: [Character]) -> Int {
+        var result1 = false
+        var result2 = false
+
+        result1 = tab1.contains { theChar in
+            theChar.name == nameChar
+        }
+
+        result2 = tab2.contains { theChar in
+            theChar.name == nameChar
+        }
+
+        if result1 {
+            return 1
+        } else if result2 {
+            return 2
+        } else {
+            return 3
+        }
+    }
+
+    // Le joueur correspondant joue son tour
+    func turn(of player: Player, nextPlayer: Player) {
+
+        var characterPicked: Character?
+        var characterPicked2 = Character()
+        var character: String?
+
+        print("\(player.name), select a character\n")
+
+        //Affichage des personnages
+        displayChars(chars: player.hisChars)
+
+        //Choix du personnage
+        repeat {
+            character = readLine()
+        } while character!.isEmpty || !controlChar(nameChar: character!, tabChars: player.hisChars)
+
+        characterPicked = pickChar(nameChar: character!, tabChars: player.hisChars)
+
+        //Choix du personnage cible
+        print("Choose an ally to heal, or an ennemy to attack!\n")
+
+        repeat {
+            character = readLine()
+        } while character!.isEmpty || !inTeam(nameChar: character!, tab1: player.hisChars, tab2: nextPlayer.hisChars)
+
+        let team = whichTeam(nameChar: character!, tab1: player.hisChars, tab2: nextPlayer.hisChars)
+
+        if team == 1 {
+
+            characterPicked2 = pickChar(nameChar: character!, tabChars: player.hisChars)
+            characterPicked!.heal(target: characterPicked2)
+
+        } else if team == 2 {
+
+            characterPicked2 = pickChar(nameChar: character!, tabChars: nextPlayer.hisChars)
+            characterPicked!.attack(target: characterPicked2)
+
+            if characterPicked2.health <= 0 {
+
+                nextPlayer.hisEliminatedChars.append(characterPicked2)
+                removeFromTab(nameChar: characterPicked2.name, tabChars: &nextPlayer.hisChars)
             }
         }
     }

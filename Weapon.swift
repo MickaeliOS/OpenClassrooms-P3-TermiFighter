@@ -7,9 +7,22 @@
 
 import Foundation
 
-enum Weapon: Int {
-    case sword = 100
-    case bow = 120
-    case gun = 150
-    case shotgun = 200
+class Weapon {
+    var name: String
+    var damages: Int
+
+    init(name: String, damages: Int) {
+        self.name = name
+        self.damages = damages
+    }
 }
+
+/*class arme {
+    nom
+    damages
+}
+
+class bow: arme {
+    super.init
+}
+*/

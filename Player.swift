@@ -7,14 +7,15 @@
 
 class Player {
     var name: String
-    var tableOfCharacters: [Character]
+    var hisChars: [Character]
+    var hisEliminatedChars = [Character]()
 
-    init(name: String, tableOfCharacter: [Character]) {
+    init(name: String, hisChars: [Character]) {
         self.name = name
-        self.tableOfCharacters = tableOfCharacter
+        self.hisChars = hisChars
     }
 
     convenience init() {
-        self.init(name: "", tableOfCharacter: [Character]())
+        self.init(name: "", hisChars: [Character]())
     }
 }
