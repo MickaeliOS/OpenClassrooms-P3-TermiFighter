@@ -6,7 +6,7 @@
 //
 class Game {
     var nbTurns = 0
-    var tabChars = charactersCreation()
+    var characters = charactersCreation()
     var P1 = Player()
     var P2 = Player()
 
@@ -51,7 +51,7 @@ class Game {
 
         // Display the rest of the characters
         print("\nRESTE DES PERSONNAGES\n")
-        displayChars(chars: tabChars)
+        displayChars(chars: characters)
 
     }
 
@@ -61,7 +61,7 @@ class Game {
         var character: String?
 
         // Display of the characters
-        self.displayChars(chars: tabChars)
+        self.displayChars(chars: characters)
 
         // Players chooses their team
         var count = 0
@@ -71,7 +71,7 @@ class Game {
 
             repeat {
                 character = readLine()
-            } while character!.isEmpty || !controlChar(nameChar: character!, tabChars: tabChars)
+            } while character!.isEmpty || !controlChar(nameChar: character!, tabChars: characters)
                 
                 print("Pick his new name, otherwise you can write \"no\" \n")
 
@@ -83,14 +83,14 @@ class Game {
 
                     if rename != "no" {
 
-                        charsOfThePlayer.append(self.pickChar(nameChar: character!, tabChars: tabChars))
-                        removeFromTab(nameChar: character!, tabChars: &tabChars)
+                        charsOfThePlayer.append(self.pickChar(nameChar: character!, tabChars: characters))
+                        removeFromTab(nameChar: character!, chars: &characters)
                         charsOfThePlayer[count].name = rename!
 
                     } else {
 
-                        charsOfThePlayer.append(self.pickChar(nameChar: character!, tabChars: tabChars))
-                        removeFromTab(nameChar: character!, tabChars: &tabChars)
+                        charsOfThePlayer.append(self.pickChar(nameChar: character!, tabChars: characters))
+                        removeFromTab(nameChar: character!, chars: &characters)
 
                     }
 
@@ -102,11 +102,12 @@ class Game {
 
     }
 
+    // Affichage du gagnant et du perdant
     func display(winner: Player, loser: Player) {
 
-        print("***************************************************")
-        print("\nCONGRATULATIONS \(winner.name)! YOU WON THE GAME IN \(nbTurns) TURNS!")
-        print("***************************************************\n")
+        print("********************************************************")
+        print("\nCONGRATULATIONS \(winner.name)! YOU WON THE GAME IN \(nbTurns) TURNS!\n")
+        print("********************************************************\n")
 
         print("Your characters :\n")
         displayChars(chars: winner.hisChars)
@@ -115,6 +116,7 @@ class Game {
         displayChars(chars: loser.hisEliminatedChars)
     }
 
+    // Début de l'affrontement
     func startBattle() {
         print("\n------------------GAME START------------------\n")
         repeat {
@@ -122,16 +124,10 @@ class Game {
 
             turn(of: P1, nextPlayer: P2)
 
-                if P1.hisChars.isEmpty {
-
-                    display(winner: P2, loser: P1)
-                    break
-
-                } else if P2.hisChars.isEmpty {
+                if P2.hisChars.isEmpty {
 
                     display(winner: P1, loser: P2)
                     break
-
                 }
             
             turn(of: P2, nextPlayer: P1)
@@ -141,16 +137,11 @@ class Game {
                     display(winner: P2, loser: P1)
                     break
 
-                } else if P2.hisChars.isEmpty {
-
-                    display(winner: P1, loser: P2)
-                    break
-
                 }
-
         } while true
     }
 
+    // Création des personnages du jeu
     static func charactersCreation() -> [Character] {
         var charactersTable = [Character]()
 
@@ -167,6 +158,7 @@ class Game {
         return charactersTable
     }
 
+    // Affichage d'un tableau de personnages
     func displayChars(chars: [Character]) {
         for character in chars {
             print("Name : \(character.name) // Health : \(character.health) // Weapon : \(character.weapon.damages)")
@@ -174,20 +166,23 @@ class Game {
         }
     }
 
+    // Contrôle si un personnage est bien dans le tableau
     func controlChar(nameChar: String, tabChars: [Character]) -> Bool {
         return tabChars.contains { theCharacter in
             theCharacter.name == nameChar
         }
     }
 
+    // Retourne le personnage dont le nom match avec le nom passé en paramètre
     func pickChar(nameChar: String, tabChars: [Character]) -> Character {
         return tabChars.first { theCharacter in
             theCharacter.name == nameChar
         }!
     }
 
-    func removeFromTab(nameChar: String, tabChars: inout [Character]) {
-        tabChars.removeAll { theChar in
+    // Supprime un personnage
+    func removeFromTab(nameChar: String, chars: inout [Character]) {
+        chars.removeAll { theChar in
             theChar.name == nameChar
         }
     }
@@ -271,7 +266,7 @@ class Game {
             if characterPicked2.health <= 0 {
 
                 nextPlayer.hisEliminatedChars.append(characterPicked2)
-                removeFromTab(nameChar: characterPicked2.name, tabChars: &nextPlayer.hisChars)
+                removeFromTab(nameChar: characterPicked2.name, chars: &nextPlayer.hisChars)
             }
         }
     }
