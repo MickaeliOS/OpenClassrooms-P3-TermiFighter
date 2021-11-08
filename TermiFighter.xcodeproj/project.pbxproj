@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		833C1B2D27391D3F00C39BF1 /* Bomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833C1B2C27391D3F00C39BF1 /* Bomb.swift */; };
+		833C1B3127392B8700C39BF1 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833C1B3027392B8700C39BF1 /* Box.swift */; };
 		834BD3E62726F2F100DBF80A /* Bow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BD3E52726F2F100DBF80A /* Bow.swift */; };
 		834BD3E82726F4EE00DBF80A /* Gun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BD3E72726F4EE00DBF80A /* Gun.swift */; };
-		834BD3EA2726F50900DBF80A /* Shotgun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BD3E92726F50900DBF80A /* Shotgun.swift */; };
 		834BD3EC2726F51F00DBF80A /* Sword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BD3EB2726F51F00DBF80A /* Sword.swift */; };
 		834BD3F02726F5AB00DBF80A /* Eddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BD3EF2726F5AB00DBF80A /* Eddy.swift */; };
 		834BD3F22726F67600DBF80A /* Carol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BD3F12726F67600DBF80A /* Carol.swift */; };
@@ -40,9 +41,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		833C1B2C27391D3F00C39BF1 /* Bomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bomb.swift; sourceTree = "<group>"; };
+		833C1B3027392B8700C39BF1 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		834BD3E52726F2F100DBF80A /* Bow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bow.swift; sourceTree = "<group>"; };
 		834BD3E72726F4EE00DBF80A /* Gun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gun.swift; sourceTree = "<group>"; };
-		834BD3E92726F50900DBF80A /* Shotgun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shotgun.swift; sourceTree = "<group>"; };
 		834BD3EB2726F51F00DBF80A /* Sword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sword.swift; sourceTree = "<group>"; };
 		834BD3EF2726F5AB00DBF80A /* Eddy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eddy.swift; sourceTree = "<group>"; };
 		834BD3F12726F67600DBF80A /* Carol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carol.swift; sourceTree = "<group>"; };
@@ -75,9 +77,11 @@
 		834BD3ED2726F57900DBF80A /* The Weapons */ = {
 			isa = PBXGroup;
 			children = (
+				83781EE02720441700744877 /* Weapon.swift */,
+				833C1B3027392B8700C39BF1 /* Box.swift */,
 				834BD3E52726F2F100DBF80A /* Bow.swift */,
 				834BD3E72726F4EE00DBF80A /* Gun.swift */,
-				834BD3E92726F50900DBF80A /* Shotgun.swift */,
+				833C1B2C27391D3F00C39BF1 /* Bomb.swift */,
 				834BD3EB2726F51F00DBF80A /* Sword.swift */,
 			);
 			path = "The Weapons";
@@ -105,7 +109,6 @@
 			children = (
 				834BD3EE2726F59000DBF80A /* The Characters */,
 				834BD3ED2726F57900DBF80A /* The Weapons */,
-				83781EE02720441700744877 /* Weapon.swift */,
 				8363347B27144DBD00C9BBCE /* TermiFighter */,
 				8363347A27144DBD00C9BBCE /* Products */,
 			);
@@ -187,9 +190,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				834BD3EA2726F50900DBF80A /* Shotgun.swift in Sources */,
 				834BD3FE2726F83D00DBF80A /* Terry.swift in Sources */,
 				834BD3E82726F4EE00DBF80A /* Gun.swift in Sources */,
+				833C1B3127392B8700C39BF1 /* Box.swift in Sources */,
 				834BD3F42726F69D00DBF80A /* Fred.swift in Sources */,
 				834BD3E62726F2F100DBF80A /* Bow.swift in Sources */,
 				834BD3F02726F5AB00DBF80A /* Eddy.swift in Sources */,
@@ -198,6 +201,7 @@
 				834BD3FC2726F82800DBF80A /* Bob.swift in Sources */,
 				834BD3F82726F7FE00DBF80A /* Boris.swift in Sources */,
 				8363348627144DDE00C9BBCE /* Game.swift in Sources */,
+				833C1B2D27391D3F00C39BF1 /* Bomb.swift in Sources */,
 				834BD3F62726F7E000DBF80A /* Celine.swift in Sources */,
 				834BD4002726F85100DBF80A /* Eva.swift in Sources */,
 				8363348427144DD600C9BBCE /* Character.swift in Sources */,

@@ -10,10 +10,12 @@ import Foundation
 class Weapon {
     var name: String
     var damages: Int
+    var image: Any
 
-    init(name: String, damages: Int) {
+    init(name: String, damages: Int, image: Any) {
         self.name = name
         self.damages = damages
+        self.image = image
     }
 }
 
