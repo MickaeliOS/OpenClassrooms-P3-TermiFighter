@@ -10,10 +10,10 @@ class Game {
     var P1 = Player()
     var P2 = Player()
 
-    enum Team: Int {
-        case teamP1 = 1
-        case teamP2 = 2
-        case noTeam = 3
+    enum Team {
+        case teamP1
+        case teamP2
+        case noTeam
     }
 
     init() {
@@ -25,18 +25,22 @@ class Game {
         //Initialization of player 1
         print("\n")
         print("🕹 Welcome to TermiFighter, the game is about to begin... Player 1, what is your name ? 🕹\n")
-        var namePlayer1 = ""
+        var namePlayer1: String?
 
-        if let nameOfThePlayer = readLine() {
-            namePlayer1 = nameOfThePlayer
-            print("\n\n\n")
-            print("\n👈 Alright \(namePlayer1), now pick 3 characters, you can modify their names ! 👈\n")
-            print("\n")
+        namePlayer1 = readLine()
+
+        while namePlayer1!.allSatisfy({ $0.isWhitespace }) {
+            print("‼️Name cannot be empty, try again!‼️\n")
+            namePlayer1 = readLine()
         }
+
+        print("\n\n\n")
+        print("\n👈 Alright \(namePlayer1!), now pick 3 characters, you can modify their names ! 👈\n")
+        print("\n")
 
         // Player1 choose his characters
         let charactersP1 = self.createTeams()
-        P1 = Player(name: namePlayer1, hisChars: charactersP1)
+        P1 = Player(name: namePlayer1!, hisChars: charactersP1)
 
         // Display the players's 1 characters
         self.displayChars(chars: charactersP1)
@@ -45,18 +49,22 @@ class Game {
         //Initialisation du joueur 2
         print(" -----------------------------")
         print("|Player 2, what is your name ?| \n -----------------------------\n")
-        var namePlayer2 = ""
+        var namePlayer2: String?
 
-        if let nameOfThePlayer = readLine() {
-            namePlayer2 = nameOfThePlayer
-            print("\n")
-            print("\n👈 Alright \(namePlayer2), now pick 3 characters, you can modify their names ! 👈\n")
-            print("\n")
+        namePlayer2 = readLine()
+
+        while namePlayer2!.allSatisfy({ $0.isWhitespace }) {
+            print("‼️Name cannot be empty, try again!‼️\n")
+            namePlayer2 = readLine()
         }
+
+        print("\n")
+        print("\n👈 Alright \(namePlayer2!), now pick 3 characters, you can modify their names ! 👈\n")
+        print("\n")
 
         // Player2 choose his characters
         let charactersP2 = self.createTeams()
-        P2 = Player(name: namePlayer2, hisChars: charactersP2)
+        P2 = Player(name: namePlayer2!, hisChars: charactersP2)
 
         // Display the players's 2 characters
         displayChars(chars: charactersP2)
@@ -67,6 +75,7 @@ class Game {
 
         var charsOfThePlayer = [Character]()
         var character: String?
+        var rename: String?
 
         // Display of the characters
         self.displayChars(chars: characters)
@@ -75,40 +84,46 @@ class Game {
         var count = 0
 
         repeat {
-            print("\n -----------")
-            print("|Character \(count+1)|\n -----------\n")
+            print("\n   -----------")
+            print("🖋|Character \(count+1)|🖋\n   -----------\n")
 
-            repeat {
+            character = readLine()
+
+            while character!.allSatisfy({ $0.isWhitespace }) || !controlChar(nameChar: character!, tabChars: characters) {
+                print("‼️This character doesn't exist, try again!‼️")
+
+                print("\n   -----------")
+                print("🖋|Character \(count+1)|🖋\n   -----------\n")
+
                 character = readLine()
-            } while character!.isEmpty || !controlChar(nameChar: character!, tabChars: characters)
-                print("\n -----------------------------------------------")
-                print("|Pick his new name, otherwise you can write \"no\"| \n -----------------------------------------------\n")
+            }
 
-            var rename: String?
+            print("\n🖋You can choose another name, otherwise, write \"no\"!🖋\n")
+            rename = readLine()
 
-            repeat {
+            while rename!.allSatisfy({ $0.isWhitespace }) {
+                print("‼️Name cannot be empty, try again!‼️\n")
                 rename = readLine()
-            } while rename!.isEmpty
+            }
 
-                    if rename != "no" {
+            if rename != "no" {
 
-                        charsOfThePlayer.append(self.pickChar(nameChar: character!, tabChars: characters))
-                        characters.removeAll { $0.name == character! }
-                        charsOfThePlayer[count].name = rename!
+                charsOfThePlayer.append(self.pickChar(nameChar: character!, tabChars: characters))
+                characters.removeAll { $0.name == character! }
+                charsOfThePlayer[count].name = rename!
 
-                    } else {
+            } else {
 
-                        charsOfThePlayer.append(self.pickChar(nameChar: character!, tabChars: characters))
-                        characters.removeAll { $0.name == character! }
+                charsOfThePlayer.append(self.pickChar(nameChar: character!, tabChars: characters))
+                characters.removeAll { $0.name == character! }
 
-                    }
+            }
 
             count += 1
 
         } while count < 3
 
         return charsOfThePlayer
-
     }
 
     // Affichage du gagnant et du perdant
@@ -241,9 +256,12 @@ class Game {
         displayChars(chars: player.hisChars)
 
         //Choix du personnage
-        repeat {
+        character = readLine()
+
+        while character!.allSatisfy({ $0.isWhitespace }) || !controlChar(nameChar: character!, tabChars: player.hisChars) {
+            print("‼️This character doesn't exist, try again!‼️\n")
             character = readLine()
-        } while character!.isEmpty || !controlChar(nameChar: character!, tabChars: player.hisChars)
+        }
 
         characterPicked = pickChar(nameChar: character!, tabChars: player.hisChars)
 
@@ -251,7 +269,7 @@ class Game {
         let call = Bool.random()
 
         if call {
-            let theBox = Box.init()
+            let theBox = Box()
             print("\n‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️")
             print("‼️SURPRISE! A random box appeared, it contains your new weapon! ‼️")
             print("‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️\n")
@@ -262,9 +280,12 @@ class Game {
         //Choix du personnage cible
         print("\nChoose an ally to heal, or an ennemy to attack!\n")
 
-        repeat {
+        character = readLine()
+
+        while character!.isEmpty || !inTeam(nameChar: character!, tab1: player.hisChars, tab2: nextPlayer.hisChars) {
+            print("‼️This character doesn't exist, try again!‼️\n")
             character = readLine()
-        } while character!.isEmpty || !inTeam(nameChar: character!, tab1: player.hisChars, tab2: nextPlayer.hisChars)
+        }
 
         let team = whichTeam(nameChar: character!, tab1: player.hisChars, tab2: nextPlayer.hisChars)
 
