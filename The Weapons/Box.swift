@@ -8,26 +8,27 @@
 import Foundation
 
 class Box: Weapon {
-    let weapons = ["Bow", "Gun", "Bomb", "Sword"]
+
+    enum Weapons: CaseIterable {
+        case Bow
+        case Gun
+        case Bomb
+        case Sword
+    }
+
+    let weapons = Weapons.allCases.randomElement()!
     
     init() {
-        let randomWeapon = weapons.randomElement()!
 
-        switch randomWeapon {
-            case "Bow":
+        switch weapons {
+            case .Bow:
                 super.init(name: "Bow", damages: 150, image: "🏹")
-                break
-            case "Gun":
+            case .Gun:
                 super.init(name: "Gun", damages: 150, image: "🔫")
-                break
-            case "Bomb":
+            case .Bomb:
                 super.init(name: "Bomb", damages: 200, image: "💣")
-                break
-            case "Sword":
+            case .Sword:
                 super.init(name: "Sword", damages: 100, image: "🗡")
-                break
-            default:
-                super.init(name: "", damages: 0, image: "")
         }
     }
 }

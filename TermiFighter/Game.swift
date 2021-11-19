@@ -250,7 +250,7 @@ class Game {
         var characterPicked2 = Character()
         var character: String?
 
-        print("\n▶️ \(player.name), select a character ▶️\n")
+        print("\n           ▶️ \(player.name), select a character ▶️\n")
 
         //Affichage des personnages
         displayChars(chars: player.hisChars)

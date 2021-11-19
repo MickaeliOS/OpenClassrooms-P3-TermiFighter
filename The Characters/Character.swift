@@ -8,20 +8,22 @@
 class Character {
     var name: String
     var health: Int
+    let maxHealth: Int
     var weapon: Weapon
     var nameEmoji: Any
     var healthEmoji: Any
 
-    init(name: String, health: Int, weapon: Weapon, nameEmoji: Any, healthEmoji: Any) {
+    init(name: String, health: Int, maxHealth: Int, weapon: Weapon, nameEmoji: Any, healthEmoji: Any) {
         self.name = name
         self.health = health
+        self.maxHealth = maxHealth
         self.weapon = weapon
         self.nameEmoji = nameEmoji
         self.healthEmoji = healthEmoji
     }
     
     convenience init() {
-        self.init(name: "", health: 0, weapon: Bow(), nameEmoji: "", healthEmoji: "")
+        self.init(name: "", health: 0, maxHealth: 0, weapon: Bow(), nameEmoji: "", healthEmoji: "")
     }
 
     func attack(target: Character) {
@@ -29,8 +31,18 @@ class Character {
     }
 
     func heal(target: Character) {
-        target.health += self.weapon.damages
+        if target.health == target.maxHealth {
+            print("\n‼️Heal failed, this character already have all his HP‼️\n")
+            return
+
+        } else if target.maxHealth < target.health + self.weapon.damages {
+
+            target.health = target.maxHealth
+
+        } else {
+
+            target.health += self.weapon.damages
+
+        }
     }
-
-
 }

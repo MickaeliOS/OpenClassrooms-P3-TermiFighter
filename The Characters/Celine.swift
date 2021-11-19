@@ -9,6 +9,6 @@ import Foundation
 
 class Celine: Character {
     init() {
-        super.init(name: "Celine", health: 300, weapon: Bomb(), nameEmoji: "👵🏻", healthEmoji: "❤️")
+        super.init(name: "Celine", health: 300, maxHealth: 300, weapon: Bomb(), nameEmoji: "👵🏻", healthEmoji: "❤️")
     }
 }
