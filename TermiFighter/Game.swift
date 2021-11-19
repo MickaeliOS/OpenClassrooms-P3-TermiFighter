@@ -34,15 +34,16 @@ class Game {
             namePlayer1 = readLine()
         }
 
-        print("\n\n\n")
-        print("\n👈 Alright \(namePlayer1!), now pick 3 characters, you can modify their names ! 👈\n")
-        print("\n")
+        print("\n\n👈 Alright \(namePlayer1!), now pick 3 characters, you can modify their names ! 👈\n\n")
 
         // Player1 choose his characters
         let charactersP1 = self.createTeams()
         P1 = Player(name: namePlayer1!, hisChars: charactersP1)
 
         // Display the players's 1 characters
+        print("\n ---------------------")
+        print("|Player 1's characters|")
+        print(" ---------------------\n")
         self.displayChars(chars: charactersP1)
 
         // ----------------------------------------------------------------PLAYER2----------------------------------------------------------------
@@ -58,15 +59,16 @@ class Game {
             namePlayer2 = readLine()
         }
 
-        print("\n")
         print("\n👈 Alright \(namePlayer2!), now pick 3 characters, you can modify their names ! 👈\n")
-        print("\n")
 
         // Player2 choose his characters
         let charactersP2 = self.createTeams()
         P2 = Player(name: namePlayer2!, hisChars: charactersP2)
 
         // Display the players's 2 characters
+        print("\n ---------------------")
+        print("|Player 2's characters|")
+        print(" ---------------------\n")
         displayChars(chars: charactersP2)
 
     }
@@ -131,7 +133,7 @@ class Game {
 
         print(" 🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇")
         print("\n🥇CONGRATULATIONS \(winner.name)! YOU WON THE GAME IN \(nbTurns) TURNS!🥇\n")
-        print(" 🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇\n")
+        print(" 🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇\n\n")
 
         print("Your characters :\n")
         displayChars(chars: winner.hisChars)
@@ -250,7 +252,7 @@ class Game {
         var characterPicked2 = Character()
         var character: String?
 
-        print("\n           ▶️ \(player.name), select a character ▶️\n")
+        print("\n▶️ \(player.name), select a character ▶️\n")
 
         //Affichage des personnages
         displayChars(chars: player.hisChars)
