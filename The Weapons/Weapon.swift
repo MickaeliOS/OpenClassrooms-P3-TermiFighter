@@ -8,23 +8,13 @@
 import Foundation
 
 class Weapon {
-    var name: String
+    private var name: String
     var damages: Int
-    var image: Any
+    var image: String
 
-    init(name: String, damages: Int, image: Any) {
+    init(name: String, damages: Int, image: String) {
         self.name = name
         self.damages = damages
         self.image = image
     }
 }
-
-/*class arme {
-    nom
-    damages
-}
-
-class bow: arme {
-    super.init
-}
-*/

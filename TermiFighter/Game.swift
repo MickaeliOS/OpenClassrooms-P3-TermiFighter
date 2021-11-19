@@ -5,12 +5,12 @@
 //  Created by Mickaël Horn on 11/10/2021.
 //
 class Game {
-    var nbTurns = 0
-    var characters = charactersCreation()
-    var P1 = Player()
-    var P2 = Player()
+    private var nbTurns = 0
+    private var characters = charactersCreation()
+    private var P1 = Player()
+    private var P2 = Player()
 
-    enum Team {
+    private enum Team {
         case teamP1
         case teamP2
         case noTeam
@@ -20,7 +20,7 @@ class Game {
         startGame()
     }
 
-    func startGame() {
+    private func startGame() {
         // ----------------------------------------------------------------PLAYER1----------------------------------------------------------------
         //Initialization of player 1
         print("\n")
@@ -73,7 +73,7 @@ class Game {
 
     }
 
-    func createTeams() -> [Character] {
+    private func createTeams() -> [Character] {
 
         var charsOfThePlayer = [Character]()
         var character: String?
@@ -129,7 +129,7 @@ class Game {
     }
 
     // Affichage du gagnant et du perdant
-    func display(winner: Player, loser: Player) {
+    private func display(winner: Player, loser: Player) {
 
         print(" 🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇")
         print("\n🥇CONGRATULATIONS \(winner.name)! YOU WON THE GAME IN \(nbTurns) TURNS!🥇\n")
@@ -168,7 +168,7 @@ class Game {
     }
 
     // Création des personnages du jeu
-    static func charactersCreation() -> [Character] {
+    private static func charactersCreation() -> [Character] {
         var charactersTable = [Character]()
 
         charactersTable.append(Eddy())
@@ -185,7 +185,7 @@ class Game {
     }
 
     // Affichage d'un tableau de personnages
-    func displayChars(chars: [Character]) {
+    private func displayChars(chars: [Character]) {
         for character in chars {
             print("\n\(character.nameEmoji) : \(character.name)",
                   "  ||  \(character.healthEmoji) : \(character.health)  ||  ",
@@ -194,21 +194,21 @@ class Game {
     }
 
     // Contrôle si un personnage est bien dans le tableau
-    func controlChar(nameChar: String, tabChars: [Character]) -> Bool {
+    private func controlChar(nameChar: String, tabChars: [Character]) -> Bool {
         return tabChars.contains { theCharacter in
             theCharacter.name == nameChar
         }
     }
 
     // Retourne le personnage dont le nom match avec le nom passé en paramètre
-    func pickChar(nameChar: String, tabChars: [Character]) -> Character {
+    private func pickChar(nameChar: String, tabChars: [Character]) -> Character {
         return tabChars.first { theCharacter in
             theCharacter.name == nameChar
         }!
     }
 
     // Permet de savoir si un personnage est dans un des deux tableaux passés en paramètre
-    func inTeam(nameChar: String, tab1: [Character], tab2: [Character]) -> Bool {
+    private func inTeam(nameChar: String, tab1: [Character], tab2: [Character]) -> Bool {
         var result1 = false
         var result2 = false
 
@@ -224,7 +224,7 @@ class Game {
     }
 
     // Permet de savoir dans quel équipe se trouve le personnage
-    func whichTeam(nameChar: String, tab1: [Character], tab2: [Character]) -> Team {
+    private func whichTeam(nameChar: String, tab1: [Character], tab2: [Character]) -> Team {
         var result1 = false
         var result2 = false
 
@@ -246,7 +246,7 @@ class Game {
     }
 
     // Le joueur correspondant joue son tour
-    func turn(of player: Player, nextPlayer: Player) {
+    private func turn(of player: Player, nextPlayer: Player) {
 
         var characterPicked: Character?
         var characterPicked2 = Character()

@@ -8,12 +8,12 @@
 class Character {
     var name: String
     var health: Int
-    let maxHealth: Int
+    private let maxHealth: Int
     var weapon: Weapon
-    var nameEmoji: Any
-    var healthEmoji: Any
+    var nameEmoji: String
+    var healthEmoji: String
 
-    init(name: String, health: Int, maxHealth: Int, weapon: Weapon, nameEmoji: Any, healthEmoji: Any) {
+    init(name: String, health: Int, maxHealth: Int, weapon: Weapon, nameEmoji: String, healthEmoji: String) {
         self.name = name
         self.health = health
         self.maxHealth = maxHealth

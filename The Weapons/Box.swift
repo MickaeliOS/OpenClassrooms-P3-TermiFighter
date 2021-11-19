@@ -9,16 +9,15 @@ import Foundation
 
 class Box: Weapon {
 
-    enum Weapons: CaseIterable {
+    private enum Weapons: CaseIterable {
         case Bow
         case Gun
         case Bomb
         case Sword
     }
-
-    let weapons = Weapons.allCases.randomElement()!
     
     init() {
+        let weapons = Weapons.allCases.randomElement()!
 
         switch weapons {
             case .Bow:
