@@ -9,6 +9,6 @@ import Foundation
 
 class Gun: Weapon {
     init() {
-        super.init(name: "Gun", damages: 150, image: "🔫")
+        super.init(name: "Gun", damages: 200, image: "🔫")
     }
 }

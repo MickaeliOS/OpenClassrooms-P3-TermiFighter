@@ -11,8 +11,8 @@ class Game {
     private var P2 = Player()
 
     private enum Team {
-        case teamP1
-        case teamP2
+        case team1
+        case team2
         case noTeam
     }
 
@@ -100,11 +100,15 @@ class Game {
                 character = readLine()
             }
 
-            print("\n🖋You can choose another name, otherwise, write \"no\"!🖋\n")
+            print("\n🖋You must choose another name!🖋\n")
             rename = readLine()
 
-            while rename!.allSatisfy({ $0.isWhitespace }) {
-                print("‼️Name cannot be empty, try again!‼️\n")
+            while rename!.allSatisfy({ $0.isWhitespace }) || verifyName(name: rename!, tab: charsOfThePlayer) {
+                if verifyName(name: rename!, tab: charsOfThePlayer) {
+                    print("‼️\nThis name is already used, pick another one!‼️\n")
+                } else {
+                    print("‼️Name cannot be empty, try again!‼️\n")
+                }
                 rename = readLine()
             }
 
@@ -237,9 +241,9 @@ class Game {
         }
 
         if result1 {
-            return Team.teamP1
+            return Team.team1
         } else if result2 {
-            return Team.teamP2
+            return Team.team2
         } else {
             return Team.noTeam
         }
@@ -291,12 +295,12 @@ class Game {
 
         let team = whichTeam(nameChar: character!, tab1: player.hisChars, tab2: nextPlayer.hisChars)
 
-        if team == Team.teamP1 {
+        if team == Team.team1 {
 
             characterPicked2 = pickChar(nameChar: character!, tabChars: player.hisChars)
             characterPicked!.heal(target: characterPicked2)
 
-        } else if team == Team.teamP2 {
+        } else if team == Team.team2 {
 
             characterPicked2 = pickChar(nameChar: character!, tabChars: nextPlayer.hisChars)
             characterPicked!.attack(target: characterPicked2)
@@ -307,5 +311,23 @@ class Game {
                 nextPlayer.hisChars.removeAll { $0.name == characterPicked2.name }
             }
         }
+    }
+
+    private func verifyName(name: String, tab: [Character]) -> Bool {
+        var exist = false
+
+        exist = characters.contains(where: { character in
+            character.name == name
+        })
+
+        exist = exist || tab.contains(where: { character in
+            character.name == name
+        })
+
+        exist = exist || P1.hisChars.contains(where: { character in
+            character.name == name
+        })
+
+        return exist
     }
 }

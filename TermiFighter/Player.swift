@@ -6,7 +6,7 @@
 //
 
 class Player {
-    var name: String
+    let name: String
     var hisChars: [Character]
     var hisEliminatedChars = [Character]()
 

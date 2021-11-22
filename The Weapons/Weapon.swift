@@ -8,9 +8,9 @@
 import Foundation
 
 class Weapon {
-    private var name: String
-    var damages: Int
-    var image: String
+    private let name: String
+    let damages: Int
+    let image: String
 
     init(name: String, damages: Int, image: String) {
         self.name = name
