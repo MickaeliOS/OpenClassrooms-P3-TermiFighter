@@ -22,7 +22,7 @@ class Game {
 
     private func startGame() {
         // ----------------------------------------------------------------PLAYER1----------------------------------------------------------------
-        //Initialization of player 1
+        // Player1's Initialization
         print("\n")
         print("🕹 Welcome to TermiFighter, the game is about to begin... Player 1, what is your name ? 🕹\n")
         var namePlayer1: String?
@@ -47,7 +47,7 @@ class Game {
         self.displayChars(chars: charactersP1)
 
         // ----------------------------------------------------------------PLAYER2----------------------------------------------------------------
-        //Initialisation du joueur 2
+        // Player2's Initialization
         print(" -----------------------------")
         print("|Player 2, what is your name ?| \n -----------------------------\n")
         var namePlayer2: String?
@@ -132,7 +132,7 @@ class Game {
         return charsOfThePlayer
     }
 
-    // Affichage du gagnant et du perdant
+    // Display of the winner / loser and game stats
     private func display(winner: Player, loser: Player) {
 
         print(" 🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇")
@@ -146,7 +146,7 @@ class Game {
         displayChars(chars: loser.hisEliminatedChars)
     }
 
-    // Début de l'affrontement
+    // Let the fight begins!
     func startBattle() {
         print("\n------------------GAME START------------------\n")
         repeat {
@@ -171,7 +171,7 @@ class Game {
         } while true
     }
 
-    // Création des personnages du jeu
+    // Creation of the game's characters
     private static func charactersCreation() -> [Character] {
         var charactersTable = [Character]()
 
@@ -188,7 +188,7 @@ class Game {
         return charactersTable
     }
 
-    // Affichage d'un tableau de personnages
+    // Display a table of characters
     private func displayChars(chars: [Character]) {
         for character in chars {
             print("\n\(character.nameEmoji) : \(character.name)",
@@ -197,21 +197,21 @@ class Game {
         }
     }
 
-    // Contrôle si un personnage est bien dans le tableau
+    // Control if a character is in the table
     private func controlChar(nameChar: String, tabChars: [Character]) -> Bool {
         return tabChars.contains { theCharacter in
             theCharacter.name == nameChar
         }
     }
 
-    // Retourne le personnage dont le nom match avec le nom passé en paramètre
+    // Return the character with the name in parameter
     private func pickChar(nameChar: String, tabChars: [Character]) -> Character {
         return tabChars.first { theCharacter in
             theCharacter.name == nameChar
         }!
     }
 
-    // Permet de savoir si un personnage est dans un des deux tableaux passés en paramètre
+    // This function allows us to know if a character is in one of the two parameter's table
     private func inTeam(nameChar: String, tab1: [Character], tab2: [Character]) -> Bool {
         var result1 = false
         var result2 = false
@@ -227,7 +227,7 @@ class Game {
         return result1 || result2
     }
 
-    // Permet de savoir dans quel équipe se trouve le personnage
+    // In which team is the character ?
     private func whichTeam(nameChar: String, tab1: [Character], tab2: [Character]) -> Team {
         var result1 = false
         var result2 = false
@@ -249,7 +249,7 @@ class Game {
         }
     }
 
-    // Le joueur correspondant joue son tour
+    // First parameter is the player who need to play his turn
     private func turn(of player: Player, nextPlayer: Player) {
 
         var characterPicked: Character?
@@ -313,6 +313,7 @@ class Game {
         }
     }
 
+    // We verify if the name already exist or not
     private func verifyName(name: String, tab: [Character]) -> Bool {
         var exist = false
 
