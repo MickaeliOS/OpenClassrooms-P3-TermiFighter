@@ -23,9 +23,9 @@ class Box: Weapon {
             case .Bow:
                 super.init(name: "Bow", damages: 150, image: "🏹")
             case .Gun:
-                super.init(name: "Gun", damages: 150, image: "🔫")
+                super.init(name: "Gun", damages: 200, image: "🔫")
             case .Bomb:
-                super.init(name: "Bomb", damages: 200, image: "💣")
+                super.init(name: "Bomb", damages: 250, image: "💣")
             case .Sword:
                 super.init(name: "Sword", damages: 100, image: "🗡")
         }

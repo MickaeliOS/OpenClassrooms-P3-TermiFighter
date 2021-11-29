@@ -34,7 +34,7 @@ class Game {
             namePlayer1 = readLine()
         }
 
-        print("\n\n👈 Alright \(namePlayer1!), now pick 3 characters, you can modify their names ! 👈\n\n")
+        print("\n\n👈 Alright \(namePlayer1!), now pick 3 characters! 👈\n\n")
 
         // Player1 choose his characters
         let charactersP1 = self.createTeams()
@@ -48,7 +48,7 @@ class Game {
 
         // ----------------------------------------------------------------PLAYER2----------------------------------------------------------------
         // Player2's Initialization
-        print(" -----------------------------")
+        print("\n -----------------------------")
         print("|Player 2, what is your name ?| \n -----------------------------\n")
         var namePlayer2: String?
 
@@ -73,6 +73,7 @@ class Game {
 
     }
 
+    // Creation of the teams
     private func createTeams() -> [Character] {
 
         var charsOfThePlayer = [Character]()
@@ -112,18 +113,9 @@ class Game {
                 rename = readLine()
             }
 
-            if rename != "no" {
-
-                charsOfThePlayer.append(self.pickChar(nameChar: character!, tabChars: characters))
-                characters.removeAll { $0.name == character! }
-                charsOfThePlayer[count].name = rename!
-
-            } else {
-
-                charsOfThePlayer.append(self.pickChar(nameChar: character!, tabChars: characters))
-                characters.removeAll { $0.name == character! }
-
-            }
+            charsOfThePlayer.append(self.pickChar(nameChar: character!, tabChars: characters))
+            characters.removeAll { $0.name == character! }
+            charsOfThePlayer[count].name = rename!
 
             count += 1
 
@@ -135,9 +127,9 @@ class Game {
     // Display of the winner / loser and game stats
     private func display(winner: Player, loser: Player) {
 
-        print(" 🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇")
-        print("\n🥇CONGRATULATIONS \(winner.name)! YOU WON THE GAME IN \(nbTurns) TURNS!🥇\n")
-        print(" 🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇\n\n")
+        print(" \n  🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇")
+        print("\n🥇 CONGRATULATIONS \(winner.name)! YOU WON THE GAME IN \(nbTurns) TURNS!🥇\n")
+        print(" 🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇🥇\n\n")
 
         print("Your characters :\n")
         displayChars(chars: winner.hisChars)
@@ -148,7 +140,10 @@ class Game {
 
     // Let the fight begins!
     func startBattle() {
-        print("\n------------------GAME START------------------\n")
+        print("\n💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥")
+        print("💥                GAME START              💥")
+        print("💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥\n")
+
         repeat {
             nbTurns += 1
 
@@ -258,10 +253,8 @@ class Game {
 
         print("\n▶️ \(player.name), select a character ▶️\n")
 
-        //Affichage des personnages
         displayChars(chars: player.hisChars)
 
-        //Choix du personnage
         character = readLine()
 
         while character!.allSatisfy({ $0.isWhitespace }) || !controlChar(nameChar: character!, tabChars: player.hisChars) {
@@ -283,8 +276,10 @@ class Game {
             characterPicked?.weapon = theBox
         }
 
-        //Choix du personnage cible
-        print("\nChoose an ally to heal, or an ennemy to attack!\n")
+        // Target choice
+        print("\n   ❤️⚔️❤️⚔️❤️⚔️❤️⚔️❤️⚔️❤️⚔️❤️⚔️❤️⚔️❤️⚔️❤️⚔️❤️⚔️❤️")
+        print("❤️⚔️ Choose an ally to heal, or an ennemy to attack! ⚔️❤️")
+        print("   ❤️⚔️❤️⚔️❤️⚔️❤️⚔️❤️⚔️❤️⚔️❤️⚔️❤️⚔️❤️⚔️❤️⚔️❤️⚔️❤️\n")
 
         character = readLine()
 
@@ -299,6 +294,7 @@ class Game {
 
             characterPicked2 = pickChar(nameChar: character!, tabChars: player.hisChars)
             characterPicked!.heal(target: characterPicked2)
+            displayChars(chars: player.hisChars)
 
         } else if team == Team.team2 {
 
