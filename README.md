@@ -8,5 +8,5 @@ The primary objective of this project was to gain proficiency in the Swift progr
 
 <br />
 <p align="center">
-  <img src="https://github.com/MickaeliOS/OpenClassrooms-P3-TermiFighter/blob/main/Divers/GameLaunching.png" width="250">
+  <img src="https://github.com/MickaeliOS/OpenClassrooms-P3-TermiFighter/blob/main/Divers/GameLaunching.png">
 </p>
