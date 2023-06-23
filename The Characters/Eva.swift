@@ -9,6 +9,6 @@ import Foundation
 
 class Eva: Character {
     init() {
-        super.init(name: "Eva", health: 7, maxHealth: 7, weapon: Gun(), nameEmoji: "👱🏼‍♀️", healthEmoji: "❤️")
+        super.init(name: "Eva", health: 659, maxHealth: 659, weapon: Gun(), nameEmoji: "👱🏼‍♀️", healthEmoji: "❤️")
     }
 }
